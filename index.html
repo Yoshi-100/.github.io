@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ゴルフコンペ参加登録</title>
+    <title>田口 一燈クイズ</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,65 +20,126 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h1 {
+        h1, h2 {
             color: #333;
             text-align: center;
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
+        .photo-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
-        .buttons {
+        .photo {
+            margin: 10px;
             text-align: center;
-            margin-top: 20px;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
-            margin: 0 10px;
+            cursor: pointer;
         }
-        #registrationForm {
-            display: none;
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
             margin-top: 20px;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ゴルフコンペ開催！</h1>
-       <img src="https://raw.githubusercontent.com/Yoshi-100/.github.io/main/画像2.jpg" alt="ゴルフコンペイメージ">
-        <div class="buttons">
-            <button onclick="showRegistration()">参加</button>
-            <button onclick="decline()">不参加</button>
+        <h1>～田口 一燈クイズ☻～</h1>
+        <h2>以下4枚の写真を古い順に選択してください！</h2>
+        <div class="photo-container">
+            <div class="photo">
+                <img src="path_to_photo_A.jpg" alt="写真A">
+                <select id="selectA">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="path_to_photo_B.jpg" alt="写真B">
+                <select id="selectB">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="path_to_photo_C.jpg" alt="写真C">
+                <select id="selectC">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="path_to_photo_D.jpg" alt="写真D">
+                <select id="selectD">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
         </div>
-        <div id="registrationForm">
-            <h2>参加登録フォーム</h2>
-            <p>以下のリンクから登録フォームにアクセスしてください：</p>
-            <a href="https://docs.google.com/spreadsheets/d/11dmOkn5YdySgDZhFS5Pv3OVmu4ghM50zjEfIeUYmnpg/edit" target="_blank">登録フォームへ</a>
-        </div>
+        <button id="checkAnswer" disabled>答えを見る</button>
+        <div id="result"></div>
     </div>
 
     <script>
-        function showRegistration() {
-            document.getElementById('registrationForm').style.display = 'block';
-        }
-        function decline() {
-            alert('参加をお見送りいただき、ありがとうございます。');
-        }
+        const selects = document.querySelectorAll('select');
+        const checkButton = document.getElementById('checkAnswer');
+        const result = document.getElementById('result');
+        selects.forEach(select => {
+            select.addEventListener('change', () => {
+                const allSelected = Array.from(selects).every(s => s.value !== '');
+                checkButton.disabled = !allSelected;
+            });
+        });
+        checkButton.addEventListener('click', () => {
+            const answers = {
+                A: document.getElementById('selectA').value,
+                B: document.getElementById('selectB').value,
+                C: document.getElementById('selectC').value,
+                D: document.getElementById('selectD').value
+            };
+            if (answers.B === '1' && answers.C === '2' && answers.D === '3' && answers.A === '4') {
+                result.textContent = '正解＾＾今日はすぐ帰ります';
+                result.style.color = 'green';
+            } else {
+                result.textContent = '不正解--今日はお迎えよろしくお願いいします';
+                result.style.color = 'red';
+            }
+        });
     </script>
 </body>
 </html>
