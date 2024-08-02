@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Website</title>
+    <title>お誕生日ボタン</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #birthdayButton {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #ff4500;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is my first GitHub Pages website. It's currently under construction, but stay tuned for updates!</p>
+    <div>
+        <button id="birthdayButton">ここをクリック！</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        document.getElementById('birthdayButton').addEventListener('click', function() {
+            var message = document.getElementById('message');
+            message.textContent = 'お誕生日おめでとう！';
+            message.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
