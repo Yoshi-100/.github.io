@@ -1,20 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <!-- 前のheadの内容はそのまま -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>田口 一燈クイズ</title>
     <style>
-        /* 前のstyleの内容はそのまま */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .photo-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .photo {
+            margin: 10px;
+            text-align: center;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+        }
+        button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
         #correctAnswer {
             text-align: center;
             font-size: 16px;
             margin-top: 20px;
-            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 前のコンテンツはそのまま -->
+        <h1>～田口 一燈クイズ☻～</h1>
+        <h2>以下4枚の写真を古い順に選択してください！</h2>
+        <div class="photo-container">
+            <div class="photo">
+                <img src="写真A.jpg" alt="写真A">
+                <select id="selectA">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="写真B.jpg" alt="写真B">
+                <select id="selectB">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="写真C.jpg" alt="写真C">
+                <select id="selectC">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="photo">
+                <img src="写真D.jpg" alt="写真D">
+                <select id="selectD">
+                    <option value="">選択してください</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
         <button id="checkAnswer" disabled>答えを見る</button>
         <div id="result"></div>
         <div id="correctAnswer"></div>
@@ -44,14 +145,12 @@
             if (answers.B === '1' && answers.C === '2' && answers.D === '3' && answers.A === '4') {
                 result.textContent = '正解＾＾今日はすぐ帰ります';
                 result.style.color = 'green';
+                correctAnswer.textContent = ''; // 正解の場合は何も表示しない
             } else {
                 result.textContent = '不正解--今日はお迎えよろしくお願いいします';
                 result.style.color = 'red';
+                correctAnswer.innerHTML = '正解の順番：<br>1. 写真B<br>2. 写真C<br>3. 写真D<br>4. 写真A';
             }
-
-            // 正解の順番を表示
-            correctAnswer.innerHTML = '正解の順番：<br>1. 写真B<br>2. 写真C<br>3. 写真D<br>4. 写真A';
-            correctAnswer.style.display = 'block';
 
             // ボタンを無効化
             checkButton.disabled = true;
