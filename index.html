@@ -3,42 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お誕生日ボタン</title>
+    <title>ゴルフコンペ参加登録</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            line-height: 1.6;
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
-        #birthdayButton {
-            font-size: 18px;
-            padding: 10px 20px;
-            cursor: pointer;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        #message {
-            font-size: 24px;
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        .buttons {
+            text-align: center;
             margin-top: 20px;
-            color: #ff4500;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        #registrationForm {
             display: none;
+            margin-top: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
-    <div>
-        <button id="birthdayButton">ここをクリック！</button>
-        <p id="message"></p>
+    <div class="container">
+        <h1>ゴルフコンペ開催！</h1>
+       <img src="https://raw.githubusercontent.com/Yoshi-100/.github.io/main/your-image-name.jpg" alt="ゴルフコンペイメージ">
+        <div class="buttons">
+            <button onclick="showRegistration()">参加</button>
+            <button onclick="decline()">不参加</button>
+        </div>
+        <div id="registrationForm">
+            <h2>参加登録フォーム</h2>
+            <p>以下のリンクから登録フォームにアクセスしてください：</p>
+            <a href="https://docs.google.com/spreadsheets/d/11dmOkn5YdySgDZhFS5Pv3OVmu4ghM50zjEfIeUYmnpg/edit" target="_blank">登録フォームへ</a>
+        </div>
     </div>
 
     <script>
-        document.getElementById('birthdayButton').addEventListener('click', function() {
-            var message = document.getElementById('message');
-            message.textContent = 'お誕生日おめでとう！';
-            message.style.display = 'block';
-        });
+        function showRegistration() {
+            document.getElementById('registrationForm').style.display = 'block';
+        }
+        function decline() {
+            alert('参加をお見送りいただき、ありがとうございます。');
+        }
     </script>
 </body>
 </html>
